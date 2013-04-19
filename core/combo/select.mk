@@ -47,7 +47,6 @@ $(combo_target)HAVE_STRLCAT := 0
 $(combo_target)HAVE_KERNEL_MODULES := 0
 
 $(combo_target)GLOBAL_CFLAGS := -fno-exceptions -Wno-multichar
-ifeq ($(USE_MORE_OPT_FLAGS),yes)
 $(combo_target)RELEASE_CFLAGS := -O3 -g -Wstrict-aliasing=2
 ifneq ($(combo_target),HOST_)
 $(combo_target)RELEASE_CFLAGS += -Wno-error=strict-aliasing
