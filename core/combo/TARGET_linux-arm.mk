@@ -66,54 +66,22 @@ endif
 
 TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
-ifeq ($(USE_MORE_OPT_FLAGS),yes)
-    TARGET_arm_CFLAGS :=    -O3 \
-                            -fomit-frame-pointer \
-                            -fstrict-aliasing \
-                            -Wstrict-aliasing=3 \
-                            -Werror=strict-aliasing \
-                            -funswitch-loops \
-                            -fno-tree-vectorize
-else
-    TARGET_arm_CFLAGS :=    -O2 \
-                            -fgcse-after-reload \
-                            -fipa-cp-clone \
-                            -fpredictive-commoning \
-                            -fsched-spec-load \
-                            -funswitch-loops \
-                            -fvect-cost-model \
-                            -fomit-frame-pointer \
-                            -fstrict-aliasing \
-                            -Wstrict-aliasing=3 \
-                            -Werror=strict-aliasing
-endif
+TARGET_arm_CFLAGS :=    -O3 \
+                        -fomit-frame-pointer \
+                        -fstrict-aliasing    \
+                        -funswitch-loops
 
 # Modules can choose to compile some source as thumb. As
 # non-thumb enabled targets are supported, this is treated
 # as a 'hint'. If thumb is not enabled, these files are just
 # compiled as ARM.
 ifeq ($(ARCH_ARM_HAVE_THUMB_SUPPORT),true)
-    ifeq ($(USE_MORE_OPT_FLAGS),yes)
-        TARGET_thumb_CFLAGS :=  -mthumb \
-                                -O3 \
-                                -fomit-frame-pointer \
-                                -fstrict-aliasing \
-                                -Wstrict-aliasing=3 \
-                                -Werror=strict-aliasing
-    else
-        TARGET_thumb_CFLAGS :=  -mthumb \
-                                -Os \
-                                -fgcse-after-reload \
-                                -fipa-cp-clone \
-                                -fpredictive-commoning \
-                                -fsched-spec-load \
-                                -funswitch-loops \
-                                -fvect-cost-model \
-                                -fomit-frame-pointer \
-                                -fstrict-aliasing \
-                                -Wstrict-aliasing=3 \
-                                -Werror=strict-aliasing
-    endif
+TARGET_thumb_CFLAGS :=  -mthumb \
+                        -O3 \
+                        -fomit-frame-pointer \
+                        -fstrict-aliasing \
+                        -Wstrict-aliasing=2 \
+                        -Werror=strict-aliasing
 else
 TARGET_thumb_CFLAGS := $(TARGET_arm_CFLAGS)
 endif
