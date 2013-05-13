@@ -21,11 +21,11 @@
 # included before TARGET_CC is set, but we may want to use cc-option and
 # friends in the same file that sets TARGET_CC...
 
-ifeq ($(strip $(TARGET_TOOLS_PREFIX)),)
-LINARO_COMPILERCHECK_CC := prebuilts/gcc/$(HOST_PREBUILT_TAG)/arm/linaro-4.8/bin/arm-linux-androideabi-gcc$(HOST_EXECUTABLE_SUFFIX)
-else
-LINARO_COMPILERCHECK_CC := $(TARGET_TOOLS_PREFIX)gcc$(HOST_EXECUTABLE_SUFFIX)
-endif
+ ifeq ($(strip $(TARGET_TOOLS_PREFIX)),)
+LINARO_COMPILERCHECK_CC := prebuilts/gcc/$(HOST_PREBUILT_TAG)/arm/arm-linux-androideabi-4.6/bin/arm-linux-androideabi-gcc$(HOST_EXECUTABLE_SUFFIX)
+ else
+ LINARO_COMPILERCHECK_CC := $(TARGET_TOOLS_PREFIX)gcc$(HOST_EXECUTABLE_SUFFIX)
+ endif
 
 try-run = $(shell set -e; \
 	if ($(1)) >/dev/null 2>&1; then \
