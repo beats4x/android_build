@@ -188,14 +188,7 @@ ifneq ($(strip $(TARGET_BUILD_APPS)),)
 else ifneq ($(CM_BUILD),)
   $(call import-products, vendor/cyanogen/products/cyanogen_$(CM_BUILD).mk)
 else
-  # Read in all of the product definitions specified by the AndroidProducts.mk
-  # files in the tree.
-  #
-  #TODO: when we start allowing direct pointers to product files,
-  #    guarantee that they're in this list.
-  $(call import-products, $(get-all-product-makefiles))
-endif # TARGET_BUILD_APPS
-$(check-all-products)
+
 #$(dump-products)
 #$(error done)
 
