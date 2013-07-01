@@ -74,9 +74,7 @@ TARGET_arm_CFLAGS :=    -O2 \
                         -funswitch-loops \
                         -fvect-cost-model \
                         -fomit-frame-pointer \
-                        -fstrict-aliasing \
-                        -Wstrict-aliasing=3 \
-                        -Werror=strict-aliasing
+                        -fstrict-aliasing
 
 # Modules can choose to compile some source as thumb. As
 # non-thumb enabled targets are supported, this is treated
@@ -93,8 +91,7 @@ TARGET_thumb_CFLAGS :=  -mthumb \
                         -fvect-cost-model \
                         -fomit-frame-pointer \
                         -fstrict-aliasing \
-                        -Wstrict-aliasing=3 \
-                        -Werror=strict-aliasing
+                        -Wstrict-aliasing=2
 else
 TARGET_thumb_CFLAGS := $(TARGET_arm_CFLAGS)
 endif
@@ -181,8 +178,7 @@ ifndef TARGET_EXTRA_CFLAGS
   TARGET_RELEASE_CFLAGS := \
         -DNDEBUG \
         -g \
-        -Wstrict-aliasing=3 \
-        -Werror=strict-aliasing \
+        -Wstrict-aliasing=2 \
         -fgcse-after-reload \
         -frerun-cse-after-loop \
         -frename-registers
@@ -190,8 +186,7 @@ else
   TARGET_RELEASE_CFLAGS += \
         -DNDEBUG \
         -g \
-        -Wstrict-aliasing=3 \
-        -Werror=strict-aliasing \
+        -Wstrict-aliasing=2 \
         -fgcse-after-reload \
         -frerun-cse-after-loop \
         -frename-registers
