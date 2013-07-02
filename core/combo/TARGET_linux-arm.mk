@@ -74,7 +74,8 @@ TARGET_arm_CFLAGS :=    -O2 \
                         -funswitch-loops \
                         -fvect-cost-model \
                         -fomit-frame-pointer \
-                        -fstrict-aliasing
+                        -fstrict-aliasing \
+                        -Wstrict-aliasing=2
 
 # Modules can choose to compile some source as thumb. As
 # non-thumb enabled targets are supported, this is treated
