@@ -71,8 +71,7 @@ TARGET_arm_CFLAGS :=    -O3 \
                         -fno-inline-functions \
                         -fomit-frame-pointer \
                         -fstrict-aliasing \
-                        -Wstrict-aliasing=3 \
-                        -Werror=strict-aliasing
+                        -Wstrict-aliasing=3
 
 # Modules can choose to compile some source as thumb. As
 # non-thumb enabled targets are supported, this is treated
@@ -86,8 +85,7 @@ TARGET_thumb_CFLAGS :=  -mthumb \
                         -fno-unswitch-loops \
                         -fomit-frame-pointer \
                         -fstrict-aliasing \
-                        -Wstrict-aliasing=3 \
-                        -Werror=strict-aliasing
+                        -Wstrict-aliasing=3
 else
 TARGET_thumb_CFLAGS := $(TARGET_arm_CFLAGS)
 endif
@@ -175,7 +173,6 @@ ifndef TARGET_EXTRA_CFLAGS
 			  -DNDEBUG \
 			  -g \
 			  -Wstrict-aliasing=3 \
-			  -Werror=strict-aliasing \
 			  -fgcse-after-reload \
 			  -frerun-cse-after-loop \
 			  -frename-registers
@@ -184,7 +181,6 @@ else
 			  -DNDEBUG \
 			  -g \
 			  -Wstrict-aliasing=3 \
-			  -Werror=strict-aliasing \
 			  -fgcse-after-reload \
 			  -frerun-cse-after-loop \
 			  -frename-registers
