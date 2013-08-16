@@ -69,15 +69,27 @@ endif
 TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
 TARGET_arm_CFLAGS :=    -O2 \
+                        -fgcse-after-reload \
+                        -fipa-cp-clone \
+                        -fpredictive-commoning \
+                        -fsched-spec-load \
+                        -funswitch-loops \
+                        -fvect-cost-model \
                         -fomit-frame-pointer \
-                        -fstrict-aliasing    \
-                        -funswitch-loops
+                        -fstrict-aliasing
 
 # Modules can choose to compile some source as thumb.
 TARGET_thumb_CFLAGS :=  -mthumb \
                         -Os \
+                        -fgcse-after-reload \
+                        -fipa-cp-clone \
+                        -fpredictive-commoning \
+                        -fsched-spec-load \
+                        -funswitch-loops \
+                        -fvect-cost-model \
                         -fomit-frame-pointer \
-                        -fno-strict-aliasing
+                        -fstrict-aliasing \
+                        -Wstrict-aliasing=2
 
 # Set FORCE_ARM_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to force a full arm build, even for
@@ -121,7 +133,7 @@ TARGET_GLOBAL_CFLAGS += $(TARGET_ANDROID_CONFIG_CFLAGS)
 # We cannot turn it off blindly since the option is not available
 # in gcc-4.4.x.  We also want to disable sincos optimization globally
 # by turning off the builtin sin function.
-ifneq ($(filter 4.6 4.6.% 4.7 4.7.%, $(TARGET_GCC_VERSION)),)
+ifneq ($(filter 4.6 4.6.% 4.7 4.7.% 4.8 4.8.% 4.9 4.9.%, $(TARGET_GCC_VERSION)),)
 TARGET_GLOBAL_CFLAGS += -Wno-unused-but-set-variable -fno-builtin-sin \
 			-fno-strict-volatile-bitfields
 endif
