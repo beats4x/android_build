@@ -68,28 +68,22 @@ endif
 
 TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
-TARGET_arm_CFLAGS :=    -O2 \
-                        -fgcse-after-reload \
-                        -fipa-cp-clone \
-                        -fpredictive-commoning \
-                        -fsched-spec-load \
-                        -funswitch-loops \
-                        -fvect-cost-model \
+TARGET_arm_CFLAGS :=    -O3 \
+                        -fno-tree-vectorize \
+                        -fno-inline-functions \
                         -fomit-frame-pointer \
-                        -fstrict-aliasing
+                        -fstrict-aliasing \
+                        -Wstrict-aliasing=3
 
 # Modules can choose to compile some source as thumb.
 TARGET_thumb_CFLAGS :=  -mthumb \
-                        -Os \
-                        -fgcse-after-reload \
-                        -fipa-cp-clone \
-                        -fpredictive-commoning \
-                        -fsched-spec-load \
-                        -funswitch-loops \
-                        -fvect-cost-model \
+                        -O3 \
+                        -fno-tree-vectorize \
+                        -fno-inline-functions \
+                        -fno-unswitch-loops \
                         -fomit-frame-pointer \
                         -fstrict-aliasing \
-                        -Wstrict-aliasing=2
+                        -Wstrict-aliasing=3
 
 # Set FORCE_ARM_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to force a full arm build, even for
@@ -165,7 +159,7 @@ TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
 TARGET_RELEASE_CFLAGS := \
 			-DNDEBUG \
 			-g \
-			-Wstrict-aliasing=2 \
+			-Wstrict-aliasing=3 \
 			-fgcse-after-reload \
 			-frerun-cse-after-loop \
 			-frename-registers
