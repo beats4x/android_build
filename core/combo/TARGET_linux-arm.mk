@@ -69,21 +69,30 @@ endif
 TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
 TARGET_arm_CFLAGS :=    -O3 \
-                        -fno-tree-vectorize \
-                        -fno-inline-functions \
+                        -pipe \
                         -fomit-frame-pointer \
                         -fstrict-aliasing \
-                        -Wstrict-aliasing=3
+                        -Wstrict-aliasing=3 \
+                        -funswitch-loops \
+                        -fno-tree-vectorize \
+                        -fno-aggressive-loop-optimizations \
+                        -Wno-unused-parameter \
+                        -Wno-unused-value \
+                        -Wno-unused-function
 
 # Modules can choose to compile some source as thumb.
 TARGET_thumb_CFLAGS :=  -mthumb \
                         -O3 \
-                        -fno-tree-vectorize \
-                        -fno-inline-functions \
-                        -fno-unswitch-loops \
+                        -pipe \
                         -fomit-frame-pointer \
                         -fstrict-aliasing \
-                        -Wstrict-aliasing=3
+                        -Wstrict-aliasing=3 \
+                        -Werror=strict-aliasing \
+                        -fno-tree-vectorize \
+                        -fno-aggressive-loop-optimizations \
+                        -Wno-unused-parameter \
+                        -Wno-unused-value \
+                        -Wno-unused-function
 
 # Set FORCE_ARM_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to force a full arm build, even for

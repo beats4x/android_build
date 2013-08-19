@@ -46,7 +46,7 @@ $(combo_target)HAVE_STRLCPY := 0
 $(combo_target)HAVE_STRLCAT := 0
 $(combo_target)HAVE_KERNEL_MODULES := 0
 
-$(combo_target)GLOBAL_CFLAGS := -fno-exceptions -Wno-multichar -O3 -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -g -Wstrict-aliasing=3
+$(combo_target)GLOBAL_CFLAGS := -fno-exceptions -Wno-multichar -O3 -pipe -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -g -Wstrict-aliasing=3
 ifneq ($(combo_target),HOST_)
 $(combo_target)RELEASE_CFLAGS += -Wno-error=strict-aliasing
 else
