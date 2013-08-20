@@ -68,19 +68,31 @@ endif
 
 TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
-TARGET_arm_CFLAGS :=    -O3 \
+TARGET_arm_CFLAGS :=    -Os \
                         -fno-tree-vectorize \
                         -fno-inline-functions \
+                        -fgcse-after-reload \
+                        -fipa-cp-clone \
+                        -fpredictive-commoning \
+                        -fsched-spec-load \
+                        -fvect-cost-model \
                         -fomit-frame-pointer \
                         -fstrict-aliasing \
-                        -Wstrict-aliasing=3
+                        -Wstrict-aliasing=3 \
+                        -funswitch-loops
 
 # Modules can choose to compile some source as thumb.
 TARGET_thumb_CFLAGS :=  -mthumb \
-                        -O3 \
+                        -Os \
                         -fno-tree-vectorize \
                         -fno-inline-functions \
                         -fno-unswitch-loops \
+                        -fgcse-after-reload \
+                        -fipa-cp-clone \
+                        -fpredictive-commoning \
+                        -fsched-spec-load \
+                        -funswitch-loops \
+                        -fvect-cost-model \
                         -fomit-frame-pointer \
                         -fstrict-aliasing \
                         -Wstrict-aliasing=3
@@ -129,8 +141,7 @@ TARGET_GLOBAL_CFLAGS += $(TARGET_ANDROID_CONFIG_CFLAGS)
 # by turning off the builtin sin function.
 ifneq ($(filter 4.6 4.6.% 4.7 4.7.% 4.8 4.8.% 4.9 4.9.%, $(TARGET_GCC_VERSION)),)
 TARGET_GLOBAL_CFLAGS += -Wno-unused-but-set-variable -fno-builtin-sin \
-                        -fno-strict-volatile-bitfields \
-                        -Wno-unused-parameter -Wno-unused-but-set-parameter
+                        -fno-strict-volatile-bitfields
 endif
 
 # This is to avoid the dreaded warning compiler message:
