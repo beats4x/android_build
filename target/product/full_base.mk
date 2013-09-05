@@ -33,14 +33,8 @@ PRODUCT_PACKAGES += \
     libvideoeditorplayer
 
 PRODUCT_PACKAGES += \
-    Galaxy4 \
-    HoloSpiralWallpaper \
-    LiveWallpapers \
     LiveWallpapersPicker \
-    MagicSmokeWallpapers \
-    NoiseField \
     PhaseBeam \
-    VisualizationWallpapers \
     PhotoTable
 
 include $(SRC_TARGET_DIR)/product/emulator.mk
